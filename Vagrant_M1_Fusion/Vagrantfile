@@ -1,21 +1,26 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# This Vagrantfile clones from the base Ubuntu Vagrant Template VM (aka "Box")
+# This Vagrantfile clones from a base Ubuntu 20.04 Box
 # Then runs the commands to install Docker Engine
 # Please alter the networking as needed
 
 Vagrant.configure("2") do |config|
 
-  # This will work on most x86 systems using Virtualbox
-  # It will not work on ARM64 (Apple Silicon) machines using VMware Fusion
-  config.vm.box = "zrxmoto/focal64"
+  # Use Joe's Box for  ARM64 (Apple Silicon M1/Pro/Extreme) machines using VMware Fusion
+  # YOU MUST USE THE VMware Provider to use this Box
+  # Run the following command:
+
+  # vagrant plugin install vagrant-vmware-desktop
+  config.vm.box = "axnetlabs/axnetlabs_focal_arm64"
 
   # Use this box if the Hashicorp created box is desired.
   #config.vm.box = "hashicorp/focal64"
 
   # Configure Port Forwarding as needed.  
-  # If access to the container from outside the VM is desired, a port forward will be needed.
+  # If access to the container from outside the VM is desired, 
+  # Specialize networking will be required, such as public networking or port forwarding
+   
   # Expose port 5000 from the VM to the Host. Flask uses tcp 5000 by default
   #config.vm.network "forwarded_port", guest: 5000, host: 5000
   # Or expose a container on the common http port:
